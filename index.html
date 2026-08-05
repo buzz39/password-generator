@@ -1,314 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Password Generator</title>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Kanit:300,500,700'>
-<style>
-@charset "UTF-8";
-body {
-  min-height: 100vh;
-  padding-top: 100px;
-  background: linear-gradient(20deg, #b2085a 0%, #52149e 51%, #089bd1 95%);
-  font-family: "Kanit", sans-serif;
-  font-weight: 300;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Password Generator — Free Strong Random Password Maker</title>
+<meta name="description" content="Free online password generator. Create strong, random, secure passwords of any length in your browser. Nothing is sent to a server — 100% private and free.">
+<link rel="canonical" href="https://buzz39.github.io/password-generator/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Password Generator — Free Strong Random Password Maker">
+<meta property="og:description" content="Create strong, random, secure passwords in your browser. Free, private and instant.">
+<meta property="og:url" content="https://buzz39.github.io/password-generator/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Password Generator",
+      "url": "https://buzz39.github.io/password-generator/",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "description": "Free browser-based generator for strong, random, secure passwords.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long should a password be?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use at least 16 characters mixing uppercase, lowercase, numbers and symbols. Longer passwords are exponentially harder to crack." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this password generator safe?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Passwords are created locally in your browser using the Web Crypto API. Nothing is transmitted, logged or stored." }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes a password strong?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Randomness and length. A strong password is unique per account, at least 16 characters long, and uses a large character pool giving 80 or more bits of entropy." }
+        }
+      ]
+    }
+  ]
 }
-
-.instructions {
-  font-size: 0.9rem;
-  text-align: left;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
-  margin: 0;
-}
-
-.title-wrapper {
-  background: #af5095;
-  padding: 2px 10px;
-  color: white;
-}
-
-h1 {
-  font-size: 1.1rem;
-}
-
-.inner-wrapper {
-  padding: 20px;
-}
-
-.wrapper {
-  overflow: hidden;
-  margin: auto;
-  width: 90%;
-  max-width: 380px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.4);
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-flow: column wrap;
-}
-.wrapper .password-wrapper {
-  position: relative;
-  border: 2px solid lightgray;
-  color: gray;
-  padding: 2px 2px 2px 8px;
-  border-radius: 5px;
-  text-align: left;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-}
-.wrapper .password-wrapper .alert {
-  position: absolute;
-  padding: 0 5px;
-  border-radius: 2px;
-  width: 21ch;
-  height: 89%;
-  left: 2px;
-  top: -100%;
-  width: 96%;
-  text-align: center;
-  color: #333;
-  opacity: 0;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-.wrapper .password-wrapper .alert.success {
-  background: rgba(88, 216, 191, 0.9);
-  opacity: 1;
-}
-.wrapper .password-wrapper .alert.fail {
-  background: rgba(188, 90, 118, 0.9);
-  color: white;
-  opacity: 1;
-}
-.wrapper .password-wrapper .copy {
-  height: 100%;
-  width: 50px;
-  background: #af5095;
-  border: 0;
-  color: white;
-  border-radius: 2px;
-  padding: 8px;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-.wrapper .password-wrapper .copy:hover {
-  background: #b762a0;
-}
-.wrapper .controls {
-  text-align: left;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-flow: column wrap;
-}
-.wrapper .controls .control {
-  padding: 3px;
-  border-bottom: 1px solid lightgray;
-  width: 100%;
-  margin: 2px;
-}
-.wrapper .controls .generate {
-  width: 100%;
-  border: 0;
-  color: white;
-  background: #af5095;
-  border-radius: 3px;
-  height: 25px;
-  margin-top: 10px;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-.wrapper .controls .generate:hover {
-  background: #b762a0;
-}
-
-#length-box {
-  width: 100%;
-}
-#length-box input {
-  width: 100%;
-}
-
-input[type="checkbox"] {
-  visibility: hidden;
-}
-
-label.check-label {
-  position: relative;
-}
-label.check-label:before {
-  content: "";
-  height: 1rem;
-  width: 1rem;
-  left: -24px;
-  top: 0;
-  border: 0.5px solid lightgray;
-  position: absolute;
-  background: transparent;
-  -webkit-transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
-  transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
-}
-
-input[type="checkbox"]:checked + label.check-label:before {
-  content: "?";
-  font-family: "FontAwesome";
-  font-size: 0.8rem;
-  color: #58d8bf;
-  text-align: center;
-  background: #d4f5ef;
-  -webkit-transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
-  transition: all 0.3s cubic-bezier(0, 0.82, 1, 1.81);
-}
-</style>
+</script>
 </head>
 <body>
-<div class="wrapper">
-  <div class="title-wrapper">
-    <h1 class="title">Password Generator</h1>
-  </div>
-  <div class="inner-wrapper">
-    <div class="password-wrapper">
-    <div class="password-here" id="password-here">
-    ----
-  </div>
-    <button id="copy" class="copy">Copy</button>
-    <div class="alert" id="alert"><span class="message" id="message"></div>
-  </div>
-  <p class="instructions">Select your options and click the "generate" button. Your passord will appear above.</p>
-  <div class="controls">
-    <div class="control length" id="length-box" >
-      <label for="length">Password Length</label>
-      <input type="range" id='length' min="4" max="20"list="tickmarks">
-      <datalist id="tickmarks">
-        <option value="4" label="4">
-        <option value="5">
-        <option value="6">
-        <option value="7">
-        <option value="8">        
-        <option value="9">
-        <option value="10">
-        <option value="11">
-        <option value="12" label="12">
-        <option value="13">
-        <option value="14">
-        <option value="15">
-        <option value="16">
-        <option value="17">
-        <option value="18">
-        <option value="19">
-        <option value="20">
-      </datalist>
-    </div>
-    <div class="control">
-      <input type="checkbox" id="lowercase">
-      <label class="check-label" for="lowercase"><span class="checkbox">Use lowercase letters</span></label>
-    </div>
-    <div class="control">
-      <input type="checkbox" id="uppercase">
-      <label class="check-label" for="uppercase"><span class="checkbox">Use uppercase letters</span></label>
-    </div>
-    <div class="control">
-      <input type="checkbox" id="numbers">
-      <label class="check-label" for="numbers"><span class="checkbox">Use numbers</span></label>
-    </div>
-    <div class="control">
-      <input type="checkbox" id="punctuation">
-      <label class="check-label" for="punctuation"><span class="checkbox">Use special characters</span></label>
-    </div>
-    <button class="generate" id="generate">Generate!</button>
-  </div>
-  </div>
-</div>
+<header class="site">
+  <a class="brand" href="./">🔒 Password Generator</a>
+  <nav class="site">
+    <a href="strong-password-generator.html">Strong</a>
+    <a href="16-character-password-generator.html">16-character</a>
+    <a href="random-pin-generator.html">Random PIN</a>
+  </nav>
+</header>
 
-<script src='https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js'></script>
-<script>
-var clipboard = new Clipboard('.copy');
-var lowercase = "abcdefghijklmnopqrstuvwxyz",
-  uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  numbers = "0123456789",
-  punctuation = "!@#$%^&*()_+~`|}{[]:;?><,./-=",
-  lowercaseInput = document.getElementById("lowercase"),
-  uppercaseInput = document.getElementById("uppercase"),
-  punctuationInput = document.getElementById("punctuation"),
-  numbersInput = document.getElementById("numbers"),
-  lengthInput = document.getElementById("length"),
-  passwordFeild = document.getElementById("password-here"),
-  generateButton = document.getElementById("generate"),
-  copyButton = document.getElementById("copy"),
-  plength,
-  userPassword,
-  passwordCharSet;
+<main>
+  <section class="card">
+    <h1>Free Password Generator</h1>
+    <p class="lede">Create a strong, random, secure password instantly. Everything runs in your browser — your password is never sent anywhere.</p>
 
-function generate() {
-  userPassword = "";
-  passwordCharSet = "";
-  if (lowercaseInput.checked) {
-    passwordCharSet += lowercase;
-  }
-  if (uppercaseInput.checked) {
-    passwordCharSet += uppercase;
-  }
-  if (punctuationInput.checked) {
-    passwordCharSet += punctuation;
-  }
-  if (numbersInput.checked) {
-    passwordCharSet += numbers;
-  }
-  plength = Number(lengthInput.value);
+    <form id="generator">
+      <div class="password-wrapper">
+        <div class="password-here" id="password-here" aria-live="polite">----</div>
+        <button type="button" id="copy" class="copy">Copy</button>
+      </div>
+      <div class="alert" id="alert" role="status"></div>
+      <p class="strength" id="strength"></p>
 
-  for (let i = 0; i < plength; i++) {
-    userPassword += passwordCharSet.charAt(
-      Math.floor(Math.random() * passwordCharSet.length)
-    );
-  }
-  if (userPassword == "") {
-    let alertbox = document.getElementById('alert');
-    alertbox.innerHTML = "Please select an option before generating"
-    alertbox.classList.add('fail');
-    setTimeout(function(){ 
-      alertbox.classList.remove('fail');
-    }, 3000);
-  } else {
-    passwordFeild.innerHTML = userPassword;
-  }
-  copyButton.setAttribute("data-clipboard-text", userPassword)
-}
-generateButton.addEventListener("click", generate);
+      <div class="controls">
+        <div class="control">
+          <label for="length">Password length: <span id="length-value">16</span></label>
+          <input type="range" id="length" min="4" max="64" value="16">
+        </div>
+        <div class="control">
+          <input type="checkbox" id="lowercase" checked>
+          <label for="lowercase">Use lowercase letters (a–z)</label>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="uppercase" checked>
+          <label for="uppercase">Use uppercase letters (A–Z)</label>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="numbers" checked>
+          <label for="numbers">Use numbers (0–9)</label>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="punctuation" checked>
+          <label for="punctuation">Use special characters (!@#$…)</label>
+        </div>
+        <button type="submit" class="generate" id="generate">Generate password</button>
+      </div>
+    </form>
+  </section>
 
-clipboard.on('success', function(e) {
-    console.info('Action:', e.action);
-    console.info('Text:', e.text);
-    console.info('Trigger:', e.trigger);
-    let alertbox = document.getElementById('alert');
-    alertbox.innerHTML = "Copied!"
-    alertbox.classList.add('success');
-    setTimeout(function(){ 
-      alertbox.classList.remove('success');
-    }, 3000);
-    
-    e.clearSelection();
-});
+  <section class="card">
+    <h2>How to create a strong password</h2>
+    <ol>
+      <li>Choose a length of 16 characters or more.</li>
+      <li>Enable every character type: lowercase, uppercase, numbers and symbols.</li>
+      <li>Generate, copy, and store the password in a password manager.</li>
+      <li>Never reuse a password across two accounts.</li>
+      <li>Turn on two-factor authentication wherever it is offered.</li>
+    </ol>
 
-clipboard.on('error', function(e) {
-    console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);
-  let alertbox = document.getElementById('alert');
-    alertbox.innerHTML = "Try select the text to copy"
-    alertbox.classList.add('fail');
-    setTimeout(function(){ 
-      alertbox.classList.remove('fail');
-    }, 3000);
-});
-</script>
+    <h2>Why random passwords beat clever ones</h2>
+    <p>Attackers crack passwords with dictionaries, leaked-password lists and rule-based mutations, so "P@ssw0rd!" falls in seconds. A randomly generated password has no pattern to guess: its only defence — and its strongest one — is entropy. Each extra character multiplies the search space, which is why a 16-character random password with a 94-character pool offers roughly 104 bits of entropy and is impractical to brute force.</p>
+
+    <h2>Privacy</h2>
+    <p>This generator uses the browser's <code>crypto.getRandomValues()</code> function. There is no backend, no analytics on your password, no network request and no storage. Close the tab and the password is gone.</p>
+  </section>
+
+  <section class="card faq">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>How long should a password be?</summary>
+      <p>At least 16 characters. For high-value accounts such as email or banking, 20 or more is better.</p>
+    </details>
+    <details>
+      <summary>Is this password generator safe?</summary>
+      <p>Yes. Passwords are generated locally with the Web Crypto API and never leave your device.</p>
+    </details>
+    <details>
+      <summary>Should I write my password down?</summary>
+      <p>Use a reputable password manager instead. It stores unique passwords for every site and fills them in for you.</p>
+    </details>
+    <details>
+      <summary>How often should I change my password?</summary>
+      <p>Only when a service is breached or you suspect exposure. Forced routine rotation tends to produce weaker passwords.</p>
+    </details>
+  </section>
+
+  <section class="card links">
+    <h2>More generators</h2>
+    <a href="strong-password-generator.html">Strong password generator</a>
+    <a href="16-character-password-generator.html">16-character password generator</a>
+    <a href="random-pin-generator.html">Random PIN generator</a>
+  </section>
+</main>
+
+<footer class="site">
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+</footer>
+
+<script src="assets/generator.js" defer></script>
 </body>
 </html>

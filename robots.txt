@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://buzz39.github.io/password-generator/sitemap.xml
