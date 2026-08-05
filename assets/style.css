@@ -1,0 +1,126 @@
+:root {
+  --bg: #0f1226;
+  --card: #ffffff;
+  --ink: #1b1f3b;
+  --muted: #55597a;
+  --accent: #5b3df5;
+  --accent-2: #089bd1;
+  --ok: #12855f;
+  --warn: #b3541e;
+  --bad: #b00020;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: linear-gradient(20deg, #b2085a 0%, #52149e 51%, #089bd1 95%) fixed;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+header.site,
+footer.site {
+  color: #fff;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+header.site .brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav.site a {
+  color: #fff;
+  margin: 0 8px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+main {
+  width: 92%;
+  max-width: 780px;
+  margin: 0 auto 40px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 8px; }
+h2 { font-size: 1.25rem; margin: 24px 0 8px; }
+h3 { font-size: 1.05rem; margin: 18px 0 6px; }
+
+.lede { color: var(--muted); margin-top: 0; }
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #e2e2ef;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.password-here {
+  flex: 1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.1rem;
+  word-break: break-all;
+  min-height: 1.6rem;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  color: #fff;
+  background: var(--accent);
+}
+
+button.copy { background: var(--accent-2); }
+
+button.generate {
+  width: 100%;
+  margin-top: 14px;
+  font-size: 1.05rem;
+}
+
+.alert { min-height: 1.3rem; font-size: 0.85rem; color: var(--muted); }
+.alert.fail { color: var(--bad); }
+.alert.success { color: var(--ok); }
+
+.controls { margin-top: 16px; }
+.control { margin: 10px 0; }
+.control label { font-size: 0.95rem; }
+input[type="range"] { width: 100%; }
+
+.strength { font-size: 0.9rem; margin-top: 8px; }
+.strength strong.weak { color: var(--bad); }
+.strength strong.fair { color: var(--warn); }
+.strength strong.strong { color: var(--ok); }
+
+.faq details {
+  border-top: 1px solid #ececf4;
+  padding: 10px 0;
+}
+
+.faq summary { cursor: pointer; font-weight: 600; }
+
+.links a { display: inline-block; margin: 4px 10px 4px 0; }
+
+footer.site a { color: #fff; }
