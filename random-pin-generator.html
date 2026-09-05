@@ -11,7 +11,11 @@
 <meta property="og:title" content="Random PIN Generator — 4, 6 and 8 Digit PIN Codes">
 <meta property="og:description" content="Free random PIN generator. Create secure 4, 6 or 8 digit PIN codes instantly in your browser using cryptographically secure randomness.">
 <meta property="og:url" content="https://buzz39.github.io/password-generator/random-pin-generator.html">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Random PIN Generator — 4, 6 and 8 Digit PIN Codes">
+<meta name="twitter:description" content="Free random PIN generator. Create secure 4, 6 or 8 digit PIN codes instantly in your browser using cryptographically secure randomness.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
@@ -52,11 +56,15 @@
   <nav class="site">
     <a href="strong-password-generator.html">Strong</a>
     <a href="16-character-password-generator.html">16-character</a>
-    <a href="random-pin-generator.html">Random PIN</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
   </nav>
 </header>
 
 <main>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./">Password Generator</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">Random PIN Generator</span>
+  </nav>
   <section class="card">
     <h1>Random PIN Generator</h1>
     <p class="lede">Generate a secure random PIN code. Set the length below — 4, 6 or 8 digits are the usual choices.</p>
@@ -64,7 +72,7 @@
     <form id="generator">
       <div class="password-wrapper">
         <div class="password-here" id="password-here" aria-live="polite">----</div>
-        <button type="button" id="copy" class="copy">Copy</button>
+        <button type="button" id="copy" class="copy" aria-label="Copy PIN to clipboard">Copy</button>
       </div>
       <div class="alert" id="alert" role="status"></div>
       <p class="strength" id="strength"></p>
@@ -90,7 +98,7 @@
           <input type="checkbox" id="punctuation">
           <label for="punctuation">Use special characters (!@#$…)</label>
         </div>
-        <button type="submit" class="generate" id="generate">Generate</button>
+        <button type="submit" class="generate" id="generate" aria-label="Generate a new random PIN">Generate</button>
       </div>
     </form>
   </section>
@@ -111,6 +119,13 @@
     <p>Use the <a href="./">password generator</a> for letters and symbols, or the <a href="16-character-password-generator.html">16-character generator</a> for account logins.</p>
   </section>
 
+  <section class="card links">
+    <h2>Preconfigured PIN lengths</h2>
+    <a href="4-digit-pin-generator.html">4-digit PIN generator</a>
+    <a href="6-digit-pin-generator.html">6-digit PIN generator</a>
+    <a href="8-digit-pin-generator.html">8-digit PIN generator</a>
+  </section>
+
   <section class="card faq">
     <h2>Frequently asked questions</h2>
     <details>
@@ -129,7 +144,7 @@
 </main>
 
 <footer class="site">
-  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="security.html">Security</a> · <a href="contact.html">Contact</a></p>
 </footer>
 
 <script src="assets/generator.js" defer></script>

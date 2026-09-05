@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passphrase Generator — Create Strong Memorable Passphrases</title>
+<meta name="description" content="Generate a strong, memorable passphrase made of random words. Free, private, and created entirely in your browser — never sent to a server.">
+<link rel="canonical" href="https://buzz39.github.io/password-generator/passphrase-generator.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passphrase Generator — Create Strong Memorable Passphrases">
+<meta property="og:description" content="Generate a strong, memorable passphrase made of random words. Free, private, and created entirely in your browser — never sent to a server.">
+<meta property="og:url" content="https://buzz39.github.io/password-generator/passphrase-generator.html">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passphrase Generator — Create Strong Memorable Passphrases">
+<meta name="twitter:description" content="Generate a strong, memorable passphrase made of random words. Free, private, and created entirely in your browser — never sent to a server.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Passphrase Generator",
+      "url": "https://buzz39.github.io/password-generator/passphrase-generator.html",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "description": "Generate a strong, memorable passphrase made of random words, created locally in your browser.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Password Generator", "item": "https://buzz39.github.io/password-generator/" },
+        { "@type": "ListItem", "position": 2, "name": "Passphrase Generator", "item": "https://buzz39.github.io/password-generator/passphrase-generator.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is a passphrase?", "acceptedAnswer": { "@type": "Answer", "text": "A passphrase is a password made of several random words strung together, such as cactus-window-brave-canyon. It can be easier to remember than a random string of characters while still providing strong security when the words are chosen randomly and there are enough of them." } },
+        { "@type": "Question", "name": "How many words should a passphrase have?", "acceptedAnswer": { "@type": "Answer", "text": "Four or more randomly chosen words is a reasonable starting point. Each additional word substantially increases the number of possible combinations." } },
+        { "@type": "Question", "name": "Is a passphrase as strong as a random password?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the word count and the size of the word list it is drawn from. A longer passphrase with more random words can reach comparable entropy to a random character password." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="./">🔒 Password Generator</a>
+  <nav class="site">
+    <a href="strong-password-generator.html">Strong</a>
+    <a href="16-character-password-generator.html">16-character</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
+  </nav>
+</header>
+
+<main>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./">Password Generator</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">Passphrase Generator</span>
+  </nav>
+  <section class="card">
+    <h1>Passphrase Generator</h1>
+    <p class="lede">Create a strong passphrase made of random words — easier to remember than a random string, and just as private.</p>
+
+    <form id="passphrase-generator">
+      <div class="password-wrapper">
+        <div class="password-here" id="password-here" aria-live="polite">----</div>
+        <button type="button" id="copy" class="copy" aria-label="Copy passphrase to clipboard">Copy</button>
+      </div>
+      <div class="alert" id="alert" role="status"></div>
+      <p class="strength" id="strength"></p>
+
+      <div class="controls">
+        <div class="control">
+          <label for="word-count">Number of words: <span id="word-count-value">4</span></label>
+          <input type="range" id="word-count" min="3" max="8" value="4">
+        </div>
+        <div class="control">
+          <label for="separator">Separator</label>
+          <select id="separator">
+            <option value="-">Hyphen (-)</option>
+            <option value=".">Dot (.)</option>
+            <option value="space">Space</option>
+            <option value="none">None</option>
+          </select>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="capitalize" checked>
+          <label for="capitalize">Capitalize each word</label>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="include-number">
+          <label for="include-number">Add a random number</label>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="include-symbol">
+          <label for="include-symbol">Add a random symbol</label>
+        </div>
+        <button type="submit" class="generate" id="generate" aria-label="Generate a new passphrase">Generate</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>What is a passphrase?</h2>
+    <p>A passphrase strings together several random, unrelated words — for example <code>Cactus-Window-Brave-Canyon</code> — instead of a short string of random characters. Passphrases can provide a convenient way to create longer secrets that are easier for people to remember, while still being strong if the words are chosen randomly rather than picked from memory.</p>
+
+    <h2>How the words are chosen</h2>
+    <p>Each word is selected from a fixed word list using the same cryptographically secure randomness (<code>crypto.getRandomValues()</code>) used elsewhere on this site. Nothing about your passphrase — the words, the separator, or the final result — is sent anywhere.</p>
+
+    <h2>Passphrase vs password</h2>
+    <p>See the <a href="strong-password-generator.html">strong password generator</a> if you need a short, character-based password instead — some login forms restrict special characters or set low maximum lengths that make long passphrases impractical.</p>
+  </section>
+
+  <section class="card faq">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>What is a passphrase?</summary>
+      <p>A passphrase is a password made of several random words strung together, such as cactus-window-brave-canyon. It can be easier to remember than a random string of characters while still providing strong security when the words are chosen randomly and there are enough of them.</p>
+    </details>
+    <details>
+      <summary>How many words should a passphrase have?</summary>
+      <p>Four or more randomly chosen words is a reasonable starting point. Each additional word substantially increases the number of possible combinations.</p>
+    </details>
+    <details>
+      <summary>Is a passphrase as strong as a random password?</summary>
+      <p>It depends on the word count and the size of the word list it is drawn from. A longer passphrase with more random words can reach comparable entropy to a random character password.</p>
+    </details>
+  </section>
+
+  <section class="card links">
+    <h2>More generators</h2>
+    <a href="./">Password generator</a>
+    <a href="strong-password-generator.html">Strong password generator</a>
+    <a href="random-pin-generator.html">Random PIN generator</a>
+  </section>
+</main>
+
+<footer class="site">
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+</footer>
+
+<script src="assets/generator.js" defer></script>
+</body>
+</html>

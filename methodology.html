@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology — How Passwords, PINs and Entropy Are Calculated</title>
+<meta name="description" content="The exact methodology behind this site's password generation, PIN combinations and entropy calculations, with worked examples.">
+<link rel="canonical" href="https://buzz39.github.io/password-generator/methodology.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Methodology — How Passwords, PINs and Entropy Are Calculated">
+<meta property="og:description" content="The exact methodology behind this site's password generation, PIN combinations and entropy calculations, with worked examples.">
+<meta property="og:url" content="https://buzz39.github.io/password-generator/methodology.html">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Methodology — How Passwords, PINs and Entropy Are Calculated">
+<meta name="twitter:description" content="The exact methodology behind this site's password generation, PIN combinations and entropy calculations, with worked examples.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Methodology",
+      "url": "https://buzz39.github.io/password-generator/methodology.html",
+      "description": "The exact methodology behind password generation, PIN combinations and entropy calculations on this site."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Password Generator", "item": "https://buzz39.github.io/password-generator/" },
+        { "@type": "ListItem", "position": 2, "name": "Methodology", "item": "https://buzz39.github.io/password-generator/methodology.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="./">🔒 Password Generator</a>
+  <nav class="site">
+    <a href="strong-password-generator.html">Strong</a>
+    <a href="16-character-password-generator.html">16-character</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
+  </nav>
+</header>
+
+<main>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./">Password Generator</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">Methodology</span>
+  </nav>
+  <section class="card">
+    <h1>Methodology</h1>
+    <p class="lede">The exact math and process behind every password, PIN and passphrase this site generates.</p>
+
+    <h2>Random generation</h2>
+    <p>Each character is selected using <code>window.crypto.getRandomValues()</code> combined with rejection sampling: a 32-bit random value is drawn and discarded if it falls outside the largest multiple of the pool size that fits in the range, eliminating modulo bias. This guarantees a uniform distribution across the chosen character pool.</p>
+
+    <h2>Character pools</h2>
+    <ul>
+      <li>Lowercase letters (a–z): 26 characters</li>
+      <li>Uppercase letters (A–Z): 26 characters</li>
+      <li>Numbers (0–9): 10 characters</li>
+      <li>Symbols (!@#$%^&amp;*()_+~`|}{[]:;?&gt;&lt;,./-=): 29 characters</li>
+    </ul>
+    <p>The generator guarantees at least one character from every selected type before filling the remaining length randomly, then shuffles the result so the guaranteed characters are not always in the same position.</p>
+
+    <h2>Entropy calculation</h2>
+    <p>For a password of uniformly random characters, entropy in bits is:</p>
+    <p><code>entropy = length × log2(pool size)</code></p>
+    <p>Example: a 16-character password using all four sets has a pool size of 91 (26+26+10+29 — punctuation set used here has 29 characters), giving roughly <code>16 × log2(91) ≈ 104.7 bits</code>. This assumes uniform random selection from the stated pool; it is not a guarantee against every real-world attack, such as reused or leaked passwords.</p>
+
+    <h2>PIN combinations</h2>
+    <p>For an N-digit numeric PIN, the number of possible values is <code>10^N</code>:</p>
+    <ul>
+      <li>4 digits: 10,000 combinations</li>
+      <li>6 digits: 1,000,000 combinations</li>
+      <li>8 digits: 100,000,000 combinations</li>
+    </ul>
+    <p>Real-world PIN security also depends on factors outside this calculation, such as rate limiting, lockouts after failed attempts, and whether the PIN follows a predictable pattern (birthdays, repeated digits, keypad shapes).</p>
+
+    <h2>Passphrase entropy</h2>
+    <p>For a passphrase of <em>w</em> words drawn independently from a list of size <em>N</em>, entropy is <code>w × log2(N)</code>. This site's word list currently contains a few hundred common English words; a longer or larger list increases entropy per word.</p>
+
+    <h2>Limitations</h2>
+    <p>These calculations describe the mathematical strength of a value chosen uniformly at random from a defined pool. They do not account for a password being reused across sites, exposed in a data breach, guessed through social engineering, or intercepted by malware on the device where it is typed.</p>
+  </section>
+
+  <section class="card links">
+    <h2>Related pages</h2>
+    <a href="security.html">Security</a>
+    <a href="about.html">About</a>
+    <a href="faq.html">FAQ</a>
+  </section>
+</main>
+
+<footer class="site">
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+</footer>
+
+<script src="assets/generator.js" defer></script>
+</body>
+</html>

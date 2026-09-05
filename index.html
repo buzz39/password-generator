@@ -11,7 +11,11 @@
 <meta property="og:title" content="Password Generator — Free Strong Random Password Maker">
 <meta property="og:description" content="Create strong, random, secure passwords in your browser. Free, private and instant.">
 <meta property="og:url" content="https://buzz39.github.io/password-generator/">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Password Generator — Free Strong Random Password Maker">
+<meta name="twitter:description" content="Create strong, random, secure passwords in your browser. Free, private and instant.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
@@ -57,7 +61,8 @@
   <nav class="site">
     <a href="strong-password-generator.html">Strong</a>
     <a href="16-character-password-generator.html">16-character</a>
-    <a href="random-pin-generator.html">Random PIN</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
   </nav>
 </header>
 
@@ -69,7 +74,7 @@
     <form id="generator">
       <div class="password-wrapper">
         <div class="password-here" id="password-here" aria-live="polite">----</div>
-        <button type="button" id="copy" class="copy">Copy</button>
+        <button type="button" id="copy" class="copy" aria-label="Copy password to clipboard">Copy</button>
       </div>
       <div class="alert" id="alert" role="status"></div>
       <p class="strength" id="strength"></p>
@@ -95,7 +100,7 @@
           <input type="checkbox" id="punctuation" checked>
           <label for="punctuation">Use special characters (!@#$…)</label>
         </div>
-        <button type="submit" class="generate" id="generate">Generate password</button>
+        <button type="submit" class="generate" id="generate" aria-label="Generate a new password">Generate password</button>
       </div>
     </form>
   </section>
@@ -103,7 +108,7 @@
   <section class="card">
     <h2>How to create a strong password</h2>
     <ol>
-      <li>Choose a length of 16 characters or more.</li>
+      <li>Longer passwords are generally stronger. NIST guidance recommends passwords of at least 15 characters for general use, though individual websites may set their own minimums.</li>
       <li>Enable every character type: lowercase, uppercase, numbers and symbols.</li>
       <li>Generate, copy, and store the password in a password manager.</li>
       <li>Never reuse a password across two accounts.</li>
@@ -141,12 +146,24 @@
     <h2>More generators</h2>
     <a href="strong-password-generator.html">Strong password generator</a>
     <a href="16-character-password-generator.html">16-character password generator</a>
+    <a href="random-password-generator.html">Random password generator</a>
+    <a href="passphrase-generator.html">Passphrase generator</a>
     <a href="random-pin-generator.html">Random PIN generator</a>
+    <a href="password-strength-checker.html">Password strength checker</a>
+  </section>
+
+  <section class="card links">
+    <h2>Learn more</h2>
+    <a href="security.html">Security</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="faq.html">FAQ</a>
+    <a href="about.html">About</a>
   </section>
 </main>
 
 <footer class="site">
-  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="security.html">Security</a> · <a href="contact.html">Contact</a></p>
 </footer>
 
 <script src="assets/generator.js" defer></script>

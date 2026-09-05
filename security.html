@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security — How PasswordGenerator.help Protects Your Passwords</title>
+<meta name="description" content="A technical explanation of how this password generator works: Web Crypto API randomness, no network transmission, no storage, no analytics on generated passwords.">
+<link rel="canonical" href="https://buzz39.github.io/password-generator/security.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Security — How PasswordGenerator.help Protects Your Passwords">
+<meta property="og:description" content="A technical explanation of how this password generator works: Web Crypto API randomness, no network transmission, no storage, no analytics on generated passwords.">
+<meta property="og:url" content="https://buzz39.github.io/password-generator/security.html">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Security — How PasswordGenerator.help Protects Your Passwords">
+<meta name="twitter:description" content="A technical explanation of how this password generator works: Web Crypto API randomness, no network transmission, no storage, no analytics on generated passwords.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Security",
+      "url": "https://buzz39.github.io/password-generator/security.html",
+      "description": "A technical explanation of how this password generator works and what it does and does not transmit or store."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Password Generator", "item": "https://buzz39.github.io/password-generator/" },
+        { "@type": "ListItem", "position": 2, "name": "Security", "item": "https://buzz39.github.io/password-generator/security.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is the password sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Generation happens entirely in JavaScript running in your browser. There is no backend request involved in creating a password or PIN." } },
+        { "@type": "Question", "name": "Is the password stored?", "acceptedAnswer": { "@type": "Answer", "text": "No, unless you explicitly copy it somewhere yourself. The site does not write it to localStorage, cookies, or any database." } },
+        { "@type": "Question", "name": "Does analytics receive my password?", "acceptedAnswer": { "@type": "Answer", "text": "No. Analytics events, where present, record only settings such as length and character types selected — never the generated value." } },
+        { "@type": "Question", "name": "Does the generator use Math.random()?", "acceptedAnswer": { "@type": "Answer", "text": "No. It exclusively uses window.crypto.getRandomValues(), the browser's cryptographically secure random number source, with rejection sampling to avoid bias." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="./">🔒 Password Generator</a>
+  <nav class="site">
+    <a href="strong-password-generator.html">Strong</a>
+    <a href="16-character-password-generator.html">16-character</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
+  </nav>
+</header>
+
+<main>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./">Password Generator</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">Security</span>
+  </nav>
+  <section class="card">
+    <h1>Security</h1>
+    <p class="lede">This page describes exactly how password and PIN generation works on this site, in enough technical detail to be independently verified.</p>
+
+    <h2>How passwords are generated</h2>
+    <p>Every password and PIN is built using <code>window.crypto.getRandomValues()</code>, the Web Crypto API's cryptographically secure random number generator. Each character is selected using rejection sampling, which discards out-of-range values so that every character in the chosen pool has an exactly equal chance of being picked — there is no modulo bias.</p>
+
+    <h2>Is the password sent to a server?</h2>
+    <p>No. There is no backend involved in generating a password. The entire process — reading your settings, drawing random values, assembling the result — runs in JavaScript inside your browser tab.</p>
+
+    <h2>Is the password stored?</h2>
+    <p>No, unless you explicitly copy it somewhere outside this site. Generated values are not written to <code>localStorage</code>, <code>sessionStorage</code>, cookies, or any database. Closing or refreshing the tab discards the password completely.</p>
+
+    <h2>Does analytics receive my password?</h2>
+    <p>No. Any analytics events on this site record only configuration choices — for example, password length or which character types were enabled — never the generated password, PIN, or passphrase itself.</p>
+
+    <h2>Does the generator use Math.random()?</h2>
+    <p>No. <code>Math.random()</code> is a general-purpose pseudorandom function that is not designed to resist prediction and is unsuitable for security-sensitive generation. This site uses only the Web Crypto API.</p>
+
+    <h2>Can the site see generated passwords?</h2>
+    <p>No, assuming the implementation remains entirely client-side as described above. You can verify this yourself: open your browser's developer tools, generate a password, and inspect the Network tab — no request is made — and Application/Storage tabs — nothing new is written.</p>
+
+    <h2>What we recommend you verify yourself</h2>
+    <ul>
+      <li>Disconnect from the internet and confirm the generator still works.</li>
+      <li>Open DevTools → Network while generating passwords; no requests should fire.</li>
+      <li>Open DevTools → Application → Local Storage / Cookies; no generated value should appear.</li>
+      <li>Check the page URL after generating; the password never appears in it.</li>
+    </ul>
+  </section>
+
+  <section class="card links">
+    <h2>Related pages</h2>
+    <a href="privacy.html">Privacy</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="about.html">About</a>
+  </section>
+</main>
+
+<footer class="site">
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+</footer>
+
+<script src="assets/generator.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Password Generator</title>
+<meta name="description" content="What Password Generator is, how it works, what data it processes, and how it is maintained.">
+<link rel="canonical" href="https://buzz39.github.io/password-generator/about.html">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About Password Generator">
+<meta property="og:description" content="What Password Generator is, how it works, what data it processes, and how it is maintained.">
+<meta property="og:url" content="https://buzz39.github.io/password-generator/about.html">
+<meta property="og:site_name" content="Password Generator">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About Password Generator">
+<meta name="twitter:description" content="What Password Generator is, how it works, what data it processes, and how it is maintained.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Password Generator",
+      "url": "https://buzz39.github.io/password-generator/",
+      "sameAs": ["https://github.com/buzz39/password-generator"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Password Generator",
+      "url": "https://buzz39.github.io/password-generator/"
+    },
+    {
+      "@type": "WebPage",
+      "name": "About",
+      "url": "https://buzz39.github.io/password-generator/about.html",
+      "description": "What Password Generator is, how it works, and how it is maintained."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Password Generator", "item": "https://buzz39.github.io/password-generator/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://buzz39.github.io/password-generator/about.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site">
+  <a class="brand" href="./">🔒 Password Generator</a>
+  <nav class="site">
+    <a href="strong-password-generator.html">Strong</a>
+    <a href="16-character-password-generator.html">16-character</a>
+    <a href="random-pin-generator.html">PIN Generator</a>
+    <a href="security.html">Security</a>
+  </nav>
+</header>
+
+<main>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="./">Password Generator</a> <span aria-hidden="true">/</span> <span class="current" aria-current="page">About</span>
+  </nav>
+  <section class="card">
+    <h1>About Password Generator</h1>
+    <p class="lede">Password Generator is a free, browser-based utility for creating strong passwords, PINs and passphrases.</p>
+
+    <h2>What it provides</h2>
+    <p>A set of focused tools — a general password generator, preconfigured length variants, a random PIN generator with common digit lengths, a passphrase generator, and a password strength checker — each usable immediately without an account.</p>
+
+    <h2>How the generator works</h2>
+    <p>All generation happens client-side using the browser's Web Crypto API (<code>crypto.getRandomValues()</code>). No password, PIN or passphrase is ever sent to a server. Full technical detail is on the <a href="security.html">Security page</a>.</p>
+
+    <h2>What data is processed</h2>
+    <p>Your chosen settings (length, character types, word count, and similar options) are processed locally to build the output. See the <a href="privacy.html">Privacy Policy</a> for what, if anything, is collected about site usage.</p>
+
+    <h2>What data is not collected</h2>
+    <p>Generated passwords, PINs and passphrases are never collected, logged, transmitted or stored by this site under any circumstance.</p>
+
+    <h2>How this site is maintained</h2>
+    <p>This is an independently built and maintained static website with no user accounts, backend database, or dedicated support team. It is updated occasionally to fix issues, improve tools, or reflect changes in authoritative security guidance (NIST, Google, CISA, OWASP).</p>
+    <p>Last reviewed: September 2026.</p>
+  </section>
+
+  <section class="card links">
+    <h2>Related pages</h2>
+    <a href="security.html">Security</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="contact.html">Contact</a>
+  </section>
+</main>
+
+<footer class="site">
+  <p>Free password generator — runs entirely in your browser. <a href="./">Home</a></p>
+</footer>
+
+<script src="assets/generator.js" defer></script>
+</body>
+</html>
