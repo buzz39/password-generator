@@ -67,7 +67,7 @@
     var copyButton = document.getElementById("copy");
     var boxes = ["lowercase", "uppercase", "numbers", "punctuation"].map(function (id) {
       return document.getElementById(id);
-    });
+    }).filter(function (box) { return box; });
     var timer;
 
     function notify(message, cls) {
@@ -968,7 +968,8 @@
       if (symbolBox.checked) bits += Math.log(SETS.punctuation.length) / Math.log(2);
       var strength = strengthOf(1, Math.pow(2, bits));
       strengthBox.innerHTML = "Strength: <strong class=\"" + strength.cls + "\">" +
-        strength.label + "</strong> (~" + Math.round(bits) + " bits of entropy)";
+        strength.label + "</strong> (~" + Math.round(bits) + " bits of entropy — " + wordCount +
+        " words from a " + WORDLIST.length.toLocaleString() + "-word list)";
     }
 
     function syncWordCount() {

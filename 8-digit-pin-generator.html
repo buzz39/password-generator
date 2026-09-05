@@ -82,22 +82,7 @@
           <label for="length">Length: <span id="length-value">8</span></label>
           <input type="range" id="length" min="8" max="8" value="8">
         </div>
-        <div class="control" style="display:none">
-          <input type="checkbox" id="lowercase">
-          <label for="lowercase">Use lowercase letters (a–z)</label>
-        </div>
-        <div class="control" style="display:none">
-          <input type="checkbox" id="uppercase">
-          <label for="uppercase">Use uppercase letters (A–Z)</label>
-        </div>
-        <div class="control" style="display:none">
-          <input type="checkbox" id="numbers" checked>
-          <label for="numbers">Use numbers (0–9)</label>
-        </div>
-        <div class="control" style="display:none">
-          <input type="checkbox" id="punctuation">
-          <label for="punctuation">Use special characters (!@#$…)</label>
-        </div>
+        <input type="checkbox" id="numbers" checked hidden aria-hidden="true">
         <button type="submit" class="generate" id="generate" aria-label="Generate a new 8-digit PIN">Generate</button>
       </div>
     </form>
