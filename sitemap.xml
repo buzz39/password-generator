@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://buzz39.github.io/password-generator/</loc>
+    <loc>https://passwordgenerator.help/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/strong-password-generator.html</loc>
+    <loc>https://passwordgenerator.help/strong-password-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/16-character-password-generator.html</loc>
+    <loc>https://passwordgenerator.help/16-character-password-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/random-password-generator.html</loc>
+    <loc>https://passwordgenerator.help/random-password-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/passphrase-generator.html</loc>
+    <loc>https://passwordgenerator.help/passphrase-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/password-strength-checker.html</loc>
+    <loc>https://passwordgenerator.help/password-strength-checker.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/random-pin-generator.html</loc>
+    <loc>https://passwordgenerator.help/random-pin-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/4-digit-pin-generator.html</loc>
+    <loc>https://passwordgenerator.help/4-digit-pin-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/6-digit-pin-generator.html</loc>
+    <loc>https://passwordgenerator.help/6-digit-pin-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/8-digit-pin-generator.html</loc>
+    <loc>https://passwordgenerator.help/8-digit-pin-generator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/security.html</loc>
+    <loc>https://passwordgenerator.help/security.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/privacy.html</loc>
+    <loc>https://passwordgenerator.help/privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/about.html</loc>
+    <loc>https://passwordgenerator.help/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/methodology.html</loc>
+    <loc>https://passwordgenerator.help/methodology.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/faq.html</loc>
+    <loc>https://passwordgenerator.help/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://buzz39.github.io/password-generator/contact.html</loc>
+    <loc>https://passwordgenerator.help/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
