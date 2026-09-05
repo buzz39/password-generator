@@ -109,14 +109,14 @@
     <h2>How to create a strong password</h2>
     <ol>
       <li>Longer passwords are generally stronger. NIST guidance recommends passwords of at least 15 characters for general use, though individual websites may set their own minimums.</li>
-      <li>Enable every character type: lowercase, uppercase, numbers and symbols.</li>
+      <li>Including multiple character types — lowercase, uppercase, numbers and symbols — increases the character pool, and some websites require specific types. Length and randomness matter more than checking every box.</li>
       <li>Generate, copy, and store the password in a password manager.</li>
       <li>Never reuse a password across two accounts.</li>
       <li>Turn on two-factor authentication wherever it is offered.</li>
     </ol>
 
     <h2>Why random passwords beat clever ones</h2>
-    <p>Attackers crack passwords with dictionaries, leaked-password lists and rule-based mutations, so "P@ssw0rd!" falls in seconds. A randomly generated password has no pattern to guess: its only defence — and its strongest one — is entropy. Each extra character multiplies the search space, which is why a 16-character random password with a 94-character pool offers roughly 104 bits of entropy and is impractical to brute force.</p>
+    <p>Attackers crack passwords with dictionaries, leaked-password lists and rule-based mutations, so "P@ssw0rd!" falls in seconds. A randomly generated password has no pattern to guess: its only defence — and its strongest one — is entropy. Each extra character multiplies the search space, which is why a 16-character random password with a 94-character pool offers roughly 104 bits of entropy and is highly resistant to brute-force and online guessing attacks when generated uniformly at random.</p>
 
     <h2>Privacy</h2>
     <p>This generator uses the browser's <code>crypto.getRandomValues()</code> function. There is no backend, no analytics on your password, no network request and no storage. Close the tab and the password is gone.</p>
