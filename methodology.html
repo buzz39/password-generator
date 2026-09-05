@@ -85,7 +85,7 @@
     <p>Real-world PIN security also depends on factors outside this calculation, such as rate limiting, lockouts after failed attempts, and whether the PIN follows a predictable pattern (birthdays, repeated digits, keypad shapes).</p>
 
     <h2>Passphrase entropy</h2>
-    <p>For a passphrase of <em>w</em> words drawn independently from a list of size <em>N</em>, entropy is <code>w × log2(N)</code>. This site's word list currently contains a few hundred common English words; a longer or larger list increases entropy per word.</p>
+    <p>For a passphrase of <em>w</em> words drawn independently from a list of size <em>N</em>, entropy is <code>w × log2(N)</code>. This site's passphrase generator draws from the <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">EFF long wordlist</a>, a public 7,776-word diceware list, giving <code>log2(7776) ≈ 12.9</code> bits per word. The generator's default of six words gives roughly <code>6 × 12.9 ≈ 78 bits</code>.</p>
 
     <h2>Limitations</h2>
     <p>These calculations describe the mathematical strength of a value chosen uniformly at random from a defined pool. They do not account for a password being reused across sites, exposed in a data breach, guessed through social engineering, or intercepted by malware on the device where it is typed.</p>

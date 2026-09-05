@@ -42,8 +42,8 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "What is a passphrase?", "acceptedAnswer": { "@type": "Answer", "text": "A passphrase is a password made of several random words strung together, such as cactus-window-brave-canyon. It can be easier to remember than a random string of characters while still providing strong security when the words are chosen randomly and there are enough of them." } },
-        { "@type": "Question", "name": "How many words should a passphrase have?", "acceptedAnswer": { "@type": "Answer", "text": "Four or more randomly chosen words is a reasonable starting point. Each additional word substantially increases the number of possible combinations." } },
-        { "@type": "Question", "name": "Is a passphrase as strong as a random password?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the word count and the size of the word list it is drawn from. A longer passphrase with more random words can reach comparable entropy to a random character password." } }
+        { "@type": "Question", "name": "How many words should a passphrase have?", "acceptedAnswer": { "@type": "Answer", "text": "This generator draws from a 7,776-word list, giving each word about 12.9 bits of entropy. Six words (the default) gives roughly 78 bits of entropy. Each additional word substantially increases the number of possible combinations." } },
+        { "@type": "Question", "name": "Is a passphrase as strong as a random password?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the word count and the size of the word list it is drawn from. With this site's 7,776-word list, a six-word passphrase (~78 bits) is strong but has less entropy than this site's default 16-character random password (~104 bits); adding more words closes the gap." } }
       ]
     }
   ]
@@ -79,8 +79,8 @@
 
       <div class="controls">
         <div class="control">
-          <label for="word-count">Number of words: <span id="word-count-value">4</span></label>
-          <input type="range" id="word-count" min="3" max="8" value="4">
+          <label for="word-count">Number of words: <span id="word-count-value">6</span></label>
+          <input type="range" id="word-count" min="3" max="10" value="6">
         </div>
         <div class="control">
           <label for="separator">Separator</label>
@@ -113,7 +113,10 @@
     <p>A passphrase strings together several random, unrelated words — for example <code>Cactus-Window-Brave-Canyon</code> — instead of a short string of random characters. Passphrases can provide a convenient way to create longer secrets that are easier for people to remember, while still being strong if the words are chosen randomly rather than picked from memory.</p>
 
     <h2>How the words are chosen</h2>
-    <p>Each word is selected from a fixed word list using the same cryptographically secure randomness (<code>crypto.getRandomValues()</code>) used elsewhere on this site. Nothing about your passphrase — the words, the separator, or the final result — is sent anywhere.</p>
+    <p>Each word is selected from the <a href="https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases">EFF long wordlist</a>, a public 7,776-word diceware list, using the same cryptographically secure randomness (<code>crypto.getRandomValues()</code>) used elsewhere on this site. Nothing about your passphrase — the words, the separator, or the final result — is sent anywhere.</p>
+
+    <h2>How strong is the default?</h2>
+    <p>Each word carries about <code>log2(7776) ≈ 12.9</code> bits of entropy. The default of six words gives roughly <code>6 × 12.9 ≈ 78 bits</code> — strong enough for most accounts, though somewhat less than this site's default 16-character random password (~104 bits). Add more words with the slider above for higher entropy.</p>
 
     <h2>Passphrase vs password</h2>
     <p>See the <a href="strong-password-generator.html">strong password generator</a> if you need a short, character-based password instead — some login forms restrict special characters or set low maximum lengths that make long passphrases impractical.</p>
@@ -127,11 +130,11 @@
     </details>
     <details>
       <summary>How many words should a passphrase have?</summary>
-      <p>Four or more randomly chosen words is a reasonable starting point. Each additional word substantially increases the number of possible combinations.</p>
+      <p>This generator draws from a 7,776-word list, giving each word about 12.9 bits of entropy. Six words (the default) gives roughly 78 bits. Each additional word substantially increases the number of possible combinations.</p>
     </details>
     <details>
       <summary>Is a passphrase as strong as a random password?</summary>
-      <p>It depends on the word count and the size of the word list it is drawn from. A longer passphrase with more random words can reach comparable entropy to a random character password.</p>
+      <p>It depends on the word count and the size of the word list it is drawn from. With this site's 7,776-word list, a six-word passphrase (~78 bits) is strong but has less entropy than this site's default 16-character random password (~104 bits); adding more words closes the gap.</p>
     </details>
   </section>
 

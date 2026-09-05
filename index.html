@@ -37,7 +37,7 @@
         {
           "@type": "Question",
           "name": "How long should a password be?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Use at least 16 characters mixing uppercase, lowercase, numbers and symbols. Longer passwords are exponentially harder to crack." }
+          "acceptedAnswer": { "@type": "Answer", "text": "NIST recommends at least 15 characters. Using 16 or more characters is a practical default for randomly generated passwords, provided each account uses a unique password." }
         },
         {
           "@type": "Question",
@@ -116,7 +116,7 @@
     </ol>
 
     <h2>Why random passwords beat clever ones</h2>
-    <p>Attackers crack passwords with dictionaries, leaked-password lists and rule-based mutations, so "P@ssw0rd!" falls in seconds. A randomly generated password has no pattern to guess: its only defence — and its strongest one — is entropy. Each extra character multiplies the search space, which is why a 16-character random password with a 94-character pool offers roughly 104 bits of entropy and is highly resistant to brute-force and online guessing attacks when generated uniformly at random.</p>
+    <p>Attackers crack passwords with dictionaries, leaked-password lists and rule-based mutations, so "P@ssw0rd!" falls in seconds. A randomly generated password has no pattern to guess: its only defence — and its strongest one — is entropy. Each extra character multiplies the search space, which is why a 16-character random password with a 91-character pool offers roughly 104 bits of entropy and is highly resistant to brute-force and online guessing attacks when generated uniformly at random.</p>
 
     <h2>Privacy</h2>
     <p>This generator uses the browser's <code>crypto.getRandomValues()</code> function. There is no backend, no analytics on your password, no network request and no storage. Close the tab and the password is gone.</p>
@@ -126,7 +126,7 @@
     <h2>Frequently asked questions</h2>
     <details>
       <summary>How long should a password be?</summary>
-      <p>At least 16 characters. For high-value accounts such as email or banking, 20 or more is better.</p>
+      <p>NIST recommends at least 15 characters. Using 16 or more characters is a practical default for randomly generated passwords, provided each account uses a unique password.</p>
     </details>
     <details>
       <summary>Is this password generator safe?</summary>
