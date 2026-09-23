@@ -43,7 +43,10 @@
       "mainEntity": [
         { "@type": "Question", "name": "How many combinations does a 4 digit PIN have?", "acceptedAnswer": { "@type": "Answer", "text": "10,000 — from 0000 to 9999. A 6-digit PIN has one million, and an 8-digit PIN has 100 million." } },
         { "@type": "Question", "name": "Is a random PIN safer than one I choose?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Human-chosen PINs cluster around dates and patterns that attackers try first." } },
-        { "@type": "Question", "name": "Is this PIN generator private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. PINs are generated locally with the Web Crypto API and are never sent anywhere." } }
+        { "@type": "Question", "name": "Is this PIN generator private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. PINs are generated locally with the Web Crypto API and are never sent anywhere." } },
+        { "@type": "Question", "name": "Why shouldn't I use a PIN for an online account password?", "acceptedAnswer": { "@type": "Answer", "text": "Because a PIN's safety depends on a device or terminal locking you out after a few wrong attempts. Websites don't have that hardware backstop, so an 8-digit PIN's about 26.6 bits of entropy is far too small a space to resist unlimited automated guessing online." } },
+        { "@type": "Question", "name": "Is an 8-digit PIN as safe as a strong password?", "acceptedAnswer": { "@type": "Answer", "text": "No. An 8-digit PIN carries about 26.6 bits of entropy versus 90+ bits for a typical strong password. It is only acceptable in contexts, like device lock screens, where hardware limits the number of guesses an attacker gets." } },
+        { "@type": "Question", "name": "Why does going from 4 to 6 digits only add about 6.6 bits?", "acceptedAnswer": { "@type": "Answer", "text": "Because entropy grows logarithmically with combinations, not linearly. Two extra digits multiply the combination count by 100, and log2(100) is about 6.6, so each extra digit is worth a fixed ~3.3 bits, however many digits you already have." } }
       ]
     }
   ]
@@ -91,18 +94,62 @@
 
   <section class="card">
     <h2>Choosing a secure PIN</h2>
-    <p>A four-digit PIN has only 10,000 combinations, and a handful of them — 1234, 0000, 1111, 2580 — cover a large share of real-world PINs. Because attackers guess those first, a randomly generated PIN is dramatically safer even at the same length. Where the system allows it, choose six or eight digits.</p>
+    <p>A four-digit PIN has only 10,000 combinations (10<sup>4</sup>), and a handful of them — 1234, 0000, 1111, 2580 — cover a large share of real-world PINs. Because attackers guess those first, a randomly generated PIN is dramatically safer even at the same length. Where the system allows it, choose six or eight digits.</p>
+    <p>The reason a random PIN closes that gap without changing its length is the same rejection-sampling logic described below: every one of the 10,000 (or million, or hundred million) possible values is equally likely to be produced, so there is no shortcut that lets an attacker try the common ones first and expect a better-than-even chance. A human picking a PIN unconsciously favors dates, repeated digits and keypad shapes; a cryptographically random draw has no such bias, which is the entire practical benefit of using a generator instead of typing one in.</p>
 
-    <h2>PIN safety rules</h2>
+    <h2>What a PIN protects — and where it belongs</h2>
+    <p>A PIN's security does not come primarily from its own size — it comes from the device or terminal limiting how many guesses are allowed. A phone lock screen or a debit card terminal locks you out (or wipes the device) after a handful of wrong attempts, which is what makes a 10,000-value search space acceptable. That is why PINs belong on device lock screens, SIM cards and payment cards, where hardware enforces the attempt limit — and why a PIN must never be reused as an online account password. A website login has no hardware backstop; an automated script can attempt far more than a phone's five or ten tries unless the site itself throttles logins, and many don't reliably. Numerically, an 8-digit PIN is <code>8 × log2(10) ≈ 8 × 3.32 ≈ 26.6 bits</code> of entropy, while a 16-character password with letters, digits and symbols (see the <a href="16-character-password-generator.html">16-character generator</a>) is roughly <code>16 × log2(91) ≈ 104 bits</code> — a difference of about 2<sup>77</sup>, an unfathomably larger search space. That gap is the reason online accounts need full-character-set passwords, not PINs, regardless of how many digits the PIN has.</p>
+
+    <h2>PIN length comparison: 4 vs. 6 vs. 8 digits</h2>
+    <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;margin:12px 0;">
+      <caption style="text-align:left;font-weight:600;margin-bottom:6px;">Combinations = 10^N; entropy = N × log2(10) ≈ N × 3.32 bits</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid #e2e2ef;">Digits</th>
+          <th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid #e2e2ef;">Combinations</th>
+          <th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid #e2e2ef;">Entropy (bits)</th>
+          <th scope="col" style="text-align:left;padding:8px;border-bottom:2px solid #e2e2ef;">Typical use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">4</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">10,000</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">≈13.3</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">Phone lock screens, quick-access door codes</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">6</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">1,000,000</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">≈19.9</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">Default smartphone lock PIN, many banking apps</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">8</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">100,000,000</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">≈26.6</td>
+          <td style="padding:8px;border-bottom:1px solid #ececf4;">Higher-security devices and vaults that allow longer input</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Common mistakes that undo a PIN</h2>
     <ul>
-      <li>Never use a birth year, address number or repeated digits.</li>
-      <li>Do not reuse a card PIN as a phone unlock code.</li>
-      <li>Shield the keypad when entering a PIN in public.</li>
-      <li>Change the PIN immediately if a card or device is lost.</li>
+      <li>Using a birth year, address number, or anniversary — these cluster around a small, guessable set of values.</li>
+      <li>Repeated or sequential digits, or a straight line on the keypad (0000, 1111, 1234, 2580).</li>
+      <li>Reusing the same PIN across a card, a phone and a door code — one exposure compromises all three.</li>
+      <li>Writing the PIN on or near the card or device it unlocks.</li>
+      <li>Not changing the PIN immediately after a card or device is lost or stolen.</li>
+      <li>Entering the PIN in public without shielding the keypad from onlookers.</li>
     </ul>
 
+    <h2>How the randomness is produced</h2>
+    <p>Each digit is drawn with <code>window.crypto.getRandomValues()</code>, the browser's cryptographically secure random number source, using rejection sampling so every digit 0–9 has an exactly equal chance of appearing. The PIN is generated entirely inside your browser tab — nothing is sent to a server, logged, or stored. See the <a href="security.html">Security page</a> for how to verify this yourself, and the <a href="methodology.html">Methodology page</a> for the full combinatorics.</p>
+
     <h2>Need a full password instead?</h2>
-    <p>Use the <a href="./">password generator</a> for letters and symbols, or the <a href="16-character-password-generator.html">16-character generator</a> for account logins.</p>
+    <p>Use the <a href="random-password-generator.html">random password generator</a> for letters and symbols, or the <a href="16-character-password-generator.html">16-character generator</a> for account logins.</p>
   </section>
 
   <section class="card links">
@@ -110,6 +157,16 @@
     <a href="4-digit-pin-generator.html">4-digit PIN generator</a>
     <a href="6-digit-pin-generator.html">6-digit PIN generator</a>
     <a href="8-digit-pin-generator.html">8-digit PIN generator</a>
+  </section>
+
+  <section class="card links">
+    <h2>Related pages</h2>
+    <a href="./">Password generator</a>
+    <a href="random-password-generator.html">Random password generator</a>
+    <a href="16-character-password-generator.html">16-character password generator</a>
+    <a href="methodology.html">Methodology</a>
+    <a href="security.html">Security</a>
+    <a href="faq.html">FAQ</a>
   </section>
 
   <section class="card faq">
@@ -125,6 +182,18 @@
     <details>
       <summary>Is this PIN generator private?</summary>
       <p>Yes. PINs are generated locally with the Web Crypto API and are never sent anywhere.</p>
+    </details>
+    <details>
+      <summary>Why shouldn't I use a PIN for an online account password?</summary>
+      <p>Because a PIN's safety depends on a device or terminal locking you out after a few wrong attempts. Websites don't have that hardware backstop, so an 8-digit PIN's ~26.6 bits of entropy is far too small a space to resist unlimited automated guessing online.</p>
+    </details>
+    <details>
+      <summary>Is an 8-digit PIN as safe as a strong password?</summary>
+      <p>No. An 8-digit PIN carries about 26.6 bits of entropy versus 90+ bits for a typical strong password. It's only acceptable in contexts — like device lock screens — where hardware limits the number of guesses an attacker gets.</p>
+    </details>
+    <details>
+      <summary>Why does going from 4 to 6 digits only add about 6.6 bits?</summary>
+      <p>Because entropy grows logarithmically with combinations, not linearly. Two extra digits multiply the combination count by 100 (10<sup>2</sup>), and log2(100) is about 6.6 — so each extra digit is worth a fixed ~3.3 bits, however many digits you already have.</p>
     </details>
   </section>
 </main>
