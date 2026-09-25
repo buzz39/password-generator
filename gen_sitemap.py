@@ -61,7 +61,11 @@ def main() -> None:
         assert stamp_el is not None and len(stamp_el.text or "") == 10, "malformed lastmod"
 
     SITEMAP.write_text(xml, encoding="utf-8")
-    print(f"sitemap.xml: {len(urls)} urls dated from git history")
+    # GSC's entry for /sitemap.xml is stuck on "Couldn't fetch" even though the origin
+    # answers 200/xml to every UA (verified). A fresh path has no failure history, so we
+    # serve the same bytes there too. Written here so the two can never drift.
+    (ROOT / "sitemap1.xml").write_text(xml, encoding="utf-8")
+    print(f"sitemap.xml + sitemap1.xml: {len(urls)} urls dated from git history")
 
 
 if __name__ == "__main__":
