@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://passwordgenerator.help/sitemap.xml
+Sitemap: https://passwordgenerator.help/sitemap1.xml
